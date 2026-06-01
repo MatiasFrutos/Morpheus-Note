@@ -1,0 +1,22 @@
+{
+  "name": "morpheus-note-frontend",
+  "version": "0.1.0",
+  "description": "Frontend público de Morpheus Note, una app sin login para crear mensajes que despiertan en el momento correcto.",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve public -l 5173",
+    "start": "npx serve public -l 5173"
+  },
+  "keywords": [
+    "morpheus",
+    "note",
+    "frontend",
+    "vanilla-js",
+    "time-capsule"
+  ],
+  "author": "Matias Frutos",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "morpheus-note-backend",
+  "version": "0.2.0",
+  "description": "Backend de Morpheus Note, app pública sin login para crear notas que despiertan por fecha, hora, pistas progresivas y palabra clave.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "morpheus",
+    "note",
+    "backend",
+    "express",
+    "postgresql",
+    "progressive-hints",
+    "qr"
+  ],
+  "author": "Matias Frutos",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}
