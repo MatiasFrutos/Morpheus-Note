@@ -106,11 +106,229 @@ Opcionalmente, una nota puede quedar bloqueada después de abrirse una vez.
 
 ## 🎬 Experiencia de uso
 
-```txt
-✍️ Crear nota
-→ 📅 Programar fecha y hora
-→ 🖼️ Agregar imagen o páginas
-→ 🧩 Activar pistas opcionales
-→ 📲 Compartir código, link o QR
-→ ⏳ Esperar el momento correcto
-→ 🌅 Despertar la nota
+✍️ Crear nota  
+→ 📅 Programar fecha y hora  
+→ 🖼️ Agregar imagen o páginas  
+→ 🧩 Activar pistas opcionales  
+→ 📲 Compartir código, link o QR  
+→ ⏳ Esperar el momento correcto  
+→ 🌅 Despertar la nota  
+
+---
+
+## 🧩 Pistas progresivas
+
+Las pistas progresivas convierten la espera en parte de la experiencia.
+
+Una nota puede liberar pistas antes de despertar:
+
+- ✨ Pista inicial.
+- 📅 Pista 24 horas antes.
+- 🕕 Pista 6 horas antes.
+- ⏰ Pista 1 hora antes.
+
+Cada pista puede tener una pregunta con opciones.
+
+La persona que intenta resolverla dispone de dos intentos.
+
+Esto permite crear experiencias para:
+
+- 🎁 Sorpresas.
+- 🎮 Juegos.
+- 💌 Invitaciones.
+- 🧠 Recuerdos.
+- ✨ Mensajes personales.
+- 🗺️ Búsquedas simbólicas.
+- 🎉 Eventos privados.
+
+---
+
+## 📲 Compartir como experiencia
+
+Morpheus Note no solo genera una nota.
+
+Genera una pequeña pieza interactiva para compartir.
+
+Cada nota puede entregarse como:
+
+- 🔐 Código.
+- 🔗 Link.
+- 📲 QR.
+- 🖼️ Mensaje visual.
+- 📖 Presentación paginada.
+- 🧩 Juego de pistas.
+
+La idea es que abrir una nota no sea solo leer texto, sino vivir un momento.
+
+---
+
+## 🎯 Casos de uso
+
+### 🎁 Sorpresas personales
+
+Crear una nota para revelar un mensaje en una fecha especial.
+
+### 🎮 Juegos entre amigos
+
+Compartir pistas progresivas antes de liberar el mensaje final.
+
+### 💌 Invitaciones
+
+Enviar un QR con una nota que se desbloquea en un momento específico.
+
+### 🪞 Mensajes al futuro
+
+Escribir una nota para una versión futura de uno mismo.
+
+### 🖼️ Recuerdos
+
+Guardar un mensaje con imagen y abrirlo cuando llegue el momento indicado.
+
+### 🎉 Eventos
+
+Crear mensajes secretos, pistas o accesos simbólicos para encuentros privados.
+
+---
+
+## 🛠️ Stack técnico
+
+### 🎨 Frontend
+
+- HTML.
+- CSS.
+- JavaScript Vanilla.
+- Lucide Icons.
+- QRCode.js.
+- Diseño responsive.
+- Animaciones CSS.
+- Interfaz clara y moderna.
+
+### ⚙️ Backend
+
+- Node.js.
+- Express.
+- PostgreSQL.
+- pg.
+
+### 🗄️ Base de datos
+
+- PostgreSQL.
+- Compatible con pgAdmin.
+
+---
+
+## 🧠 Módulos principales
+
+### ✍️ Crear nota
+
+Permite configurar el contenido principal de la experiencia.
+
+Incluye:
+
+- Título.
+- Fecha.
+- Hora.
+- Páginas del mensaje.
+- Imagen opcional.
+- Configuración de acceso.
+- Pistas progresivas opcionales.
+
+### 🔐 Abrir nota
+
+Permite intentar despertar una nota mediante código y palabra clave.
+
+### 🌘 Nota dormida
+
+Muestra el estado de espera, cuenta regresiva y pistas disponibles.
+
+### 🌅 Nota despierta
+
+Muestra el mensaje final en formato paginado, con imagen si fue cargada.
+
+### ⏳ Nota expirada
+
+Indica que la nota ya no está disponible.
+
+---
+
+## 🎨 Identidad visual
+
+Morpheus Note usa una estética clara, moderna y suave.
+
+La interfaz está pensada para sentirse:
+
+- ✨ Simple.
+- 🤝 Amigable.
+- 🎨 Visual.
+- 💭 Emocional.
+- ⚡ Ligera.
+- 📱 Responsive.
+- 🌙 Cercana al usuario final.
+
+El icono combina la idea de:
+
+- 🌙 Morfeo.
+- 💭 Sueño.
+- 🏛️ Filosofía.
+- ✉️ Mensajes.
+- ⏳ Tiempo.
+
+---
+
+## ✨ Detalles visuales
+
+La experiencia incluye:
+
+- Iconografía moderna con Lucide.
+- Animaciones suaves.
+- Estados visuales para notas dormidas, despiertas y expiradas.
+- Presentación clara del código, link y QR.
+- Cards livianas.
+- Interfaz responsive.
+- Flujo simple y orientado al usuario final.
+
+---
+
+## 📌 Estado del proyecto
+
+Morpheus Note se encuentra en etapa **MVP funcional**.
+
+El objetivo principal es demostrar una experiencia original de mensajería temporal sin login, combinando:
+
+- Mensajes programados.
+- QR automático.
+- Pistas progresivas.
+- Multiple choice.
+- Imagen opcional.
+- Presentación paginada.
+- Interacción visual.
+
+---
+
+## 🧭 Próximas mejoras posibles
+
+- 📍 Modo ubicación.
+- 🎙️ Audio opcional.
+- 🌐 Vista pública de notas dormidas.
+- 🧵 Modo historia.
+- 🎂 Plantillas para cumpleaños, eventos y mensajes al futuro.
+- 📲 Exportación visual del QR.
+- 🕯️ Modo lectura ceremonial.
+- 🖼️ Mejor compresión de imágenes.
+- ☁️ Storage externo para archivos.
+- 🧑‍💼 Panel de administración opcional.
+
+---
+
+## 👤 Autor
+
+Desarrollado por **Matias Isaac Frutos Gonzalez**.
+
+Proyecto conceptual, técnico y visual orientado a experiencias digitales simples, públicas y memorables.
+
+---
+
+## © Derechos reservados
+
+© 2026 Matias Isaac Frutos Gonzalez.  
+Todos los derechos reservados.
