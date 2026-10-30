@@ -1,0 +1,383 @@
+/* ==========================================================
+   MORPHEUS · skin oscura futurista (se puede desactivar desde el header)
+   ========================================================== */
+
+:root {
+  color-scheme: dark;
+
+  --mn-bg: #04050d;
+  --mn-bg-soft: #0a0c1c;
+  --mn-bg-panel: rgba(14, 17, 40, 0.7);
+  --mn-text: #eef0ff;
+  --mn-muted: #9aa3c7;
+  --mn-soft: #6b74a0;
+
+  --mn-primary: #8b7bff;
+  --mn-primary-dark: #6d5dfc;
+  --mn-primary-soft: rgba(139, 123, 255, 0.14);
+
+  --mn-secondary: #22e3ff;
+  --mn-secondary-soft: rgba(34, 227, 255, 0.12);
+
+  --mn-success: #34f0a1;
+  --mn-success-soft: rgba(52, 240, 161, 0.1);
+
+  --mn-danger: #ff5c88;
+  --mn-danger-soft: rgba(255, 92, 136, 0.1);
+
+  --mn-warning: #ffc04d;
+  --mn-warning-soft: rgba(255, 192, 77, 0.1);
+
+  --mn-border: rgba(160, 170, 255, 0.14);
+  --mn-border-strong: rgba(160, 170, 255, 0.28);
+
+  --mn-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --mn-shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --mn-shadow-md: 0 24px 70px rgba(0, 0, 0, 0.55);
+
+  --fx-glass: rgba(16, 19, 44, 0.62);
+  --fx-glass-strong: rgba(14, 17, 40, 0.9);
+  --fx-line: rgba(150, 160, 255, 0.2);
+  --fx-glow: 0 0 0 1px rgba(139, 123, 255, 0.3), 0 12px 44px rgba(109, 93, 252, 0.28);
+  --fx-grad: linear-gradient(120deg, #8b7bff 0%, #22e3ff 50%, #ff7bd5 100%);
+}
+
+body {
+  background:
+    radial-gradient(900px circle at 8% -4%, rgba(109, 93, 252, 0.28), transparent 55%),
+    radial-gradient(800px circle at 96% 6%, rgba(34, 227, 255, 0.16), transparent 55%),
+    radial-gradient(700px circle at 50% 110%, rgba(255, 123, 213, 0.12), transparent 60%),
+    #04050d;
+  background-attachment: fixed;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(139, 123, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 123, 255, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: fxGridDrift 28s linear infinite;
+}
+
+@keyframes fxGridDrift {
+  to {
+    background-position: 48px 48px, 48px 48px;
+  }
+}
+
+::selection {
+  color: #04050d;
+  background: var(--mn-secondary);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: rgba(139, 123, 255, 0.35);
+}
+
+/* ---------- Superficies de vidrio ---------- */
+
+.mn-header,
+.mn-brand__icon,
+.mn-menu-button,
+.mn-nav,
+.mn-create-hero__main,
+.mn-create-helper__steps span,
+.mn-form,
+.mn-form__section,
+.mn-dynamic-item,
+.mn-image-preview,
+.mn-option-panel,
+.mn-option-toggle__chevron,
+.mn-info-flow div,
+.mn-check,
+.mn-hint-editor,
+.mn-form__actions--sticky,
+.mn-result,
+.mn-share-card,
+.mn-state-card,
+.mn-unlocked-card,
+.mn-state-meta div,
+.mn-hint-card,
+.mn-hint-card--locked,
+.mn-hint-card__top small,
+.mn-empty-hints,
+.mn-preview,
+.mn-card,
+.mn-feature-strip,
+.mn-feature-strip div {
+  border-color: var(--mn-border);
+  background: var(--fx-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--mn-shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.mn-header {
+  border-color: var(--fx-line);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(139, 123, 255, 0.08);
+}
+
+.mn-create-hero__main,
+.mn-create-helper {
+  background:
+    radial-gradient(circle at 4% 14%, rgba(139, 123, 255, 0.2), transparent 32%),
+    radial-gradient(circle at 96% 10%, rgba(34, 227, 255, 0.14), transparent 30%),
+    var(--fx-glass);
+  border-color: var(--fx-line);
+}
+
+.mn-feature-strip div,
+.mn-state-meta div,
+.mn-card {
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.mn-card:hover,
+.mn-feature-strip div:hover {
+  border-color: rgba(139, 123, 255, 0.55);
+  box-shadow: var(--fx-glow);
+}
+
+.mn-card__icon,
+.mn-state-card__icon,
+.mn-preview__body > i {
+  box-shadow: 0 0 28px rgba(139, 123, 255, 0.45);
+}
+
+.mn-nav__link:hover {
+  color: var(--mn-text);
+  border-color: var(--fx-line);
+  background: var(--mn-primary-soft);
+}
+
+.mn-brand strong {
+  background: var(--fx-grad);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fxGradient 8s linear infinite;
+}
+
+.mn-brand__icon img {
+  filter: drop-shadow(0 0 10px rgba(139, 123, 255, 0.7));
+  animation: mnFloat 4.5s ease-in-out infinite;
+}
+
+/* ---------- Tipografía con degradé ---------- */
+
+.mn-hero h1,
+.mn-page__header h1,
+.mn-state-card h1,
+.mn-unlocked-card h1 {
+  background: linear-gradient(120deg, #ffffff 0%, #c8c0ff 45%, #22e3ff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fxGradient 9s linear infinite;
+}
+
+.mn-pill,
+.mn-eyebrow {
+  border-color: var(--fx-line);
+  color: var(--mn-secondary);
+  background: var(--mn-secondary-soft);
+  box-shadow: 0 0 20px rgba(34, 227, 255, 0.12);
+}
+
+/* ---------- Botones ---------- */
+
+.mn-btn {
+  border-color: var(--fx-line);
+  color: var(--mn-text);
+  background: var(--fx-glass);
+  transition: transform 180ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.mn-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--mn-primary);
+  box-shadow: var(--fx-glow);
+}
+
+.mn-btn--primary,
+.mn-nav__link--primary {
+  color: #ffffff;
+  border-color: transparent;
+  background: linear-gradient(120deg, #6d5dfc, #8b5cf6 45%, #22b8f0);
+  background-size: 160% 100%;
+  box-shadow: 0 10px 34px rgba(109, 93, 252, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: transform 180ms ease, box-shadow 220ms ease, background-position 500ms ease;
+}
+
+.mn-btn--primary:hover,
+.mn-nav__link--primary:hover {
+  background: linear-gradient(120deg, #6d5dfc, #8b5cf6 45%, #22b8f0);
+  background-size: 160% 100%;
+  background-position: 100% 0;
+  box-shadow: 0 14px 44px rgba(109, 93, 252, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.mn-btn--primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%) skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: fxShine 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes fxShine {
+  0%,
+  60% {
+    transform: translateX(-120%) skewX(-20deg);
+  }
+
+  100% {
+    transform: translateX(140%) skewX(-20deg);
+  }
+}
+
+/* ---------- Campos ---------- */
+
+.mn-field input,
+.mn-field textarea,
+.mn-field select,
+.mn-choice-list input[type="text"] {
+  color: var(--mn-text);
+  border-color: var(--mn-border);
+  background: rgba(6, 8, 24, 0.7);
+  transition: border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+
+.mn-field input::placeholder,
+.mn-field textarea::placeholder {
+  color: var(--mn-soft);
+}
+
+.mn-field input:focus,
+.mn-field textarea:focus,
+.mn-field select:focus,
+.mn-choice-list input[type="text"]:focus {
+  outline: 0;
+  border-color: var(--mn-secondary);
+  background: rgba(8, 11, 32, 0.9);
+  box-shadow: 0 0 0 3px rgba(34, 227, 255, 0.16), 0 0 26px rgba(34, 227, 255, 0.18);
+}
+
+.mn-field select option {
+  color: #0b0d1c;
+}
+
+.mn-file-drop {
+  border-color: var(--fx-line);
+  background: rgba(139, 123, 255, 0.06);
+}
+
+.mn-file-drop:hover {
+  border-color: var(--mn-secondary);
+  background: var(--mn-secondary-soft);
+}
+
+/* ---------- Cuenta regresiva y mensaje ---------- */
+
+.mn-countdown div {
+  border-color: var(--fx-line);
+  background: linear-gradient(160deg, rgba(139, 123, 255, 0.16), rgba(34, 227, 255, 0.06));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 26px rgba(139, 123, 255, 0.14);
+}
+
+.mn-countdown strong {
+  color: var(--mn-text);
+  text-shadow: 0 0 22px rgba(139, 123, 255, 0.8);
+  font-variant-numeric: tabular-nums;
+}
+
+.mn-message-box {
+  color: var(--mn-text);
+  border-color: var(--fx-line);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(139, 123, 255, 0.16), transparent 50%),
+    rgba(6, 8, 24, 0.7);
+  box-shadow: inset 0 0 40px rgba(139, 123, 255, 0.08), 0 0 40px rgba(34, 227, 255, 0.06);
+}
+
+/* ---------- Pistas ---------- */
+
+.mn-hint-options button {
+  color: var(--mn-text);
+  border-color: var(--mn-border);
+  background: rgba(6, 8, 24, 0.6);
+  transition: transform 160ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.mn-hint-options button:hover:not(:disabled) {
+  transform: translateX(4px);
+  border-color: var(--mn-secondary);
+  box-shadow: 0 0 22px rgba(34, 227, 255, 0.2);
+}
+
+.mn-hint-feedback--ok {
+  color: var(--mn-success);
+}
+
+.mn-hint-feedback--bad {
+  color: var(--mn-danger);
+}
+
+/* ---------- Resultados ---------- */
+
+.mn-result--success {
+  border-color: rgba(52, 240, 161, 0.4);
+  background: var(--mn-success-soft);
+  box-shadow: 0 0 40px rgba(52, 240, 161, 0.12);
+}
+
+.mn-result--error {
+  border-color: rgba(255, 92, 136, 0.4);
+  background: var(--mn-danger-soft);
+}
+
+.mn-result--info {
+  border-color: rgba(34, 227, 255, 0.4);
+  background: var(--mn-secondary-soft);
+}
+
+.mn-qr-box {
+  padding: 12px;
+  background: #ffffff;
+  box-shadow: 0 0 40px rgba(139, 123, 255, 0.45);
+}
+
+.mn-qr-box img,
+.mn-qr-box canvas {
+  border-radius: 8px;
+}
+
+/* ---------- Detalles flotantes ---------- */
+
+.mn-preview {
+  animation: mnFloat 6s ease-in-out infinite;
+  border-color: var(--fx-line);
+}
+
+.mn-pulse-icon {
+  animation: mnPulse 2.4s ease-in-out infinite;
+}
+
+.mn-footer {
+  color: var(--mn-soft);
+}
+
+@media (max-width: 940px) {
+  .mn-nav {
+    background: var(--fx-glass-strong);
+  }
+}
