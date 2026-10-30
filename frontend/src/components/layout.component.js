@@ -15,6 +15,18 @@ export function renderLayout({ content }) {
           </span>
         </a>
 
+        <div class="fx-tools">
+          <button type="button" class="fx-icon-btn fx-icon-btn--hide-sm" data-fx="palette" aria-label="Abrir paleta de comandos" title="Comandos (Ctrl + K)">
+            <i data-lucide="command"></i>
+          </button>
+          <button type="button" class="fx-icon-btn" data-fx="sound" aria-pressed="true" aria-label="Activar o silenciar sonido" title="Sonido">
+            <i data-lucide="volume-2"></i>
+          </button>
+          <button type="button" class="fx-icon-btn" data-fx="theme" aria-label="Cambiar tema" title="Tema claro / oscuro">
+            <i data-lucide="sun-moon"></i>
+          </button>
+        </div>
+
         <button class="mn-menu-button" type="button" id="mnMenuButton" aria-label="Abrir menú">
           <i data-lucide="menu"></i>
         </button>
@@ -42,7 +54,7 @@ export function renderLayout({ content }) {
       </main>
 
       <footer class="mn-footer">
-        <span>Morpheus Note · Sin login · QR · Pistas progresivas · Mensajes por páginas</span>
+        <span>Morpheus Note · Sin login · QR · Pistas progresivas · Mensajes por páginas · <span class="fx-kbd">Ctrl</span> <span class="fx-kbd">K</span> comandos</span>
       </footer>
     </div>
   `;

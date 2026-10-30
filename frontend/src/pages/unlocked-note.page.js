@@ -1,6 +1,7 @@
 "use strict";
 
 import { getNoteStatus } from "../js/api.js";
+import { chime, confetti, saveToHistory, toast, typewrite } from "../js/fx.js";
 
 export function renderUnlockedNotePage(params = {}) {
   window.addEventListener("morpheus:page-mounted", () => bindUnlockedNotePage(params), { once: true });
@@ -19,6 +20,8 @@ export function renderUnlockedNotePage(params = {}) {
         <div id="unlockedImageBox" class="mn-unlocked-image" hidden></div>
 
         <div class="mn-message-pager">
+          <div class="fx-reader-bar"><span id="readerProgress"></span></div>
+
           <div class="mn-message-box" id="unlockedNoteMessage">
             Cargando mensaje...
           </div>
@@ -36,6 +39,14 @@ export function renderUnlockedNotePage(params = {}) {
               <i data-lucide="arrow-right"></i>
             </button>
           </div>
+        </div>
+
+        <div class="fx-reader-tools" id="readerTools">
+          <button type="button" class="fx-icon-btn" data-reader="smaller" aria-label="Letra más chica"><i data-lucide="a-arrow-down"></i></button>
+          <button type="button" class="fx-icon-btn" data-reader="bigger" aria-label="Letra más grande"><i data-lucide="a-arrow-up"></i></button>
+          <button type="button" class="fx-icon-btn" data-reader="speak"><i data-lucide="volume-2"></i>Escuchar</button>
+          <button type="button" class="fx-icon-btn" data-reader="copy"><i data-lucide="copy"></i>Copiar</button>
+          <button type="button" class="fx-icon-btn" data-reader="focus"><i data-lucide="maximize"></i>Modo lectura</button>
         </div>
 
         <div id="unlockedNoteMeta" class="mn-state-meta"></div>
@@ -110,6 +121,15 @@ function renderUnlockedNote(note, code) {
     : [note.message || "La nota no contiene mensaje visible."];
 
   setupPager(pages);
+  setupReader(pages);
+
+  saveToHistory({ code, title: note.title || "", openAt: note.openAt, kind: "opened" });
+
+  if (!sessionStorage.getItem(`morpheus-celebrated-${code}`)) {
+    sessionStorage.setItem(`morpheus-celebrated-${code}`, "1");
+    chime("wake");
+    confetti(160);
+  }
 
   meta.innerHTML = `
     <div>
@@ -153,6 +173,8 @@ function setupPager(pages) {
   const nextButton = document.querySelector("#nextPageButton");
   const indicator = document.querySelector("#pageIndicator");
 
+  const progress = document.querySelector("#readerProgress");
+
   let currentPage = 0;
 
   function renderPage() {
@@ -160,7 +182,8 @@ function setupPager(pages) {
     void message.offsetWidth;
     message.classList.add("mn-page-flip");
 
-    message.textContent = pages[currentPage];
+    typewrite(message, pages[currentPage]);
+    progress.style.width = `${((currentPage + 1) / pages.length) * 100}%`;
     indicator.textContent = `${currentPage + 1} / ${pages.length}`;
 
     prevButton.disabled = currentPage === 0;
@@ -185,7 +208,78 @@ function setupPager(pages) {
     }
   });
 
+  const go = (delta) => {
+    const next = currentPage + delta;
+    if (next < 0 || next >= pages.length) return;
+    currentPage = next;
+    renderPage();
+  };
+
+  const onKey = (event) => {
+    if (!message.isConnected) {
+      document.removeEventListener("keydown", onKey);
+      return;
+    }
+
+    if (event.key === "ArrowRight" || (event.key === " " && event.target === document.body)) go(1);
+    if (event.key === "ArrowLeft") go(-1);
+  };
+
+  document.addEventListener("keydown", onKey);
+
+  let startX = 0;
+  message.addEventListener("touchstart", (event) => {
+    startX = event.touches[0].clientX;
+  }, { passive: true });
+  message.addEventListener("touchend", (event) => {
+    const delta = event.changedTouches[0].clientX - startX;
+    if (Math.abs(delta) > 50) go(delta < 0 ? 1 : -1);
+  });
+
   renderPage();
+}
+
+function setupReader(pages) {
+  const tools = document.querySelector("#readerTools");
+  const message = document.querySelector("#unlockedNoteMessage");
+  let scale = 1;
+
+  tools?.addEventListener("click", async (event) => {
+    const action = event.target.closest("[data-reader]")?.dataset.reader;
+    if (!action) return;
+
+    if (action === "bigger" || action === "smaller") {
+      scale = Math.min(Math.max(scale + (action === "bigger" ? 0.1 : -0.1), 0.8), 1.6);
+      message.style.fontSize = `${scale}em`;
+    }
+
+    if (action === "copy") {
+      try {
+        await navigator.clipboard.writeText(pages.join("\n\n"));
+        toast("Mensaje copiado", "copy");
+      } catch {
+        toast("No se pudo copiar", "x-circle");
+      }
+    }
+
+    if (action === "focus") {
+      const on = document.body.classList.toggle("fx-focus");
+      toast(on ? "Modo lectura" : "Modo normal", "maximize");
+    }
+
+    if (action === "speak") {
+      if (!("speechSynthesis" in window)) return toast("Tu navegador no puede leer en voz alta", "volume-x");
+
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+        return;
+      }
+
+      const voice = new SpeechSynthesisUtterance(pages.join(". "));
+      voice.lang = "es-AR";
+      speechSynthesis.speak(voice);
+    }
+  });
 }
 
 function formatDate(value) {

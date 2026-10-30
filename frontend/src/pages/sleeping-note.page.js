@@ -1,6 +1,7 @@
 "use strict";
 
 import { answerHint, getNoteStatus } from "../js/api.js";
+import { startLiveCountdown } from "../js/fx.js";
 
 export function renderSleepingNotePage(params = {}) {
   window.addEventListener("morpheus:page-mounted", () => bindSleepingNotePage(params), { once: true });
@@ -65,7 +66,21 @@ async function bindSleepingNotePage(params) {
 
     message.textContent = note.hint || "La nota todavía no llegó a su momento de apertura.";
 
-    renderCountdown(countdown, note.countdown);
+    if (note.openAt) {
+      startLiveCountdown({
+        container: countdown,
+        openAt: note.openAt,
+        createdAt: note.createdAt,
+        code: params.code,
+        onWake: () => {
+          setTimeout(() => {
+            window.location.hash = `#/open/${params.code}`;
+          }, 2200);
+        }
+      });
+    } else {
+      renderCountdown(countdown, note.countdown);
+    }
 
     meta.innerHTML = `
       <div>
